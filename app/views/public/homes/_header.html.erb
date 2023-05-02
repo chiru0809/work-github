@@ -1,0 +1,39 @@
+<header class="shadow-sm">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
+        <button class="navbar-toggler" type="button" data-toggler="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/">ながのCAKE</a>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+                <% if user_signed_in? %>
+                <li class="nav-item">
+                        <%= link_to 'マイページ', about_path, class: 'nav-link text-light' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to '商品一覧', about_path, class: 'nav-link text-light' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to 'カート', new_customer_registration_path, class: 'nav-link text-light' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to 'ログアウト', new_customer_session_path, class: 'nav-link text-light' %>
+                    </li>
+                <% else %>
+                    <li class="nav-item">
+                        <%= link_to 'About', about_path, class: 'nav-link text-light' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to '商品一覧', about_path, class: 'nav-link text-light' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to '新規登録', new_customer_registration_path, class: 'nav-link text-light' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to 'ログイン', new_customer_session_path, class: 'nav-link text-light' %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+    </nav>
+</header>
