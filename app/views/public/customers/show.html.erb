@@ -1,6 +1,11 @@
 <div class="container">
- <div class="row mt-5">
+ <div class="row m-4">
   <h3>マイページ</h3>
+ </div>
+ <div class="row">
+  <div class="col-auto">
+   <strong>登録情報</strong>　　<%= link_to '編集する', '/customers/information/edit', class: "btn btn-success" %>
+  </div>
  </div>
  <div class="row mt-3">
   <div class="col-auto">
@@ -12,6 +17,16 @@
     <tr><th>電話番号</th><td><%= current_customer.telephone_number %></td></tr>
     <tr><th>メールアドレス</th><td><%= current_customer.email %></td></tr>
    </table>
+  </div>
+ </div>
+ <div class="row">
+  <div class="col-auto">
+   <strong>配送先</strong>　　<%= link_to '一覧を見る', addresses_path, class: "btn btn-primary" %>
+  </div>
+ </div>
+ <div class="row mt-4">
+  <div class="col-auto">
+   <strong>注文一覧</strong>　<%= link_to '一覧を見る', orders_path, class: "btn btn-primary" %>
   </div>
  </div>
 </div>

@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 class Public::ConfirmationsController < Devise::ConfirmationsController
-
-  def show
-    @customer = Customer.find(current_customer.id)
-  end
   # GET /resource/confirmation/new
   # def new
   #   super
