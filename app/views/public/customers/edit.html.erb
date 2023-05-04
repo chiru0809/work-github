@@ -1,74 +1,33 @@
 <div class="container">
- <div class="row m-4">
-  <h3>会員情報編集</h3>
- </div>
-
-  <%= form_with model: current_customer do |f| %>
-
-  <div class="row mb-2">
-      <div class="field">
-        <dev class="col-aut">
-          <%= f.label "氏名" %>
-        </div>
-        <dev class="col-auto">
-          <%= f.text_field :last_name %>
-          <%= f.text_field :first_name %>
-        </dev>
-      </dev>
-    </div>
-
-    <div class="row mb-2">
-      <div class="field">
-        <dev class="col-auto">
-          <%= f.label "フリガナ" %>
-          <%= f.text_field :last_name_kana %>
-          <%= f.text_field :first_name_kana %>
-        </dev>
-      </dev>
-    </div>
-
-    <div class="row mb-2">
-      <div class="field">
-        <dev class="col-2">
-          <%= f.label "メールアドレス" %>
-        </div>
-        <dev class="col-10">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </dev>
-      </dev>
-    </div>
-
-    <div class="row mb-2">
-      <div class="field">
-        <dev class="col-auto">
-          <%= f.label "郵便番号" %>
-          <%= f.text_field :postal_code %>
-        </dev>
-      </dev>
-    </div>
-
-    <div class="row mb-2">
-      <div class="field">
-        <dev class="col-auto">
-          <%= f.label "住所" %>
-          <%= f.text_field :address %>
-        </dev>
-      </dev>
-    </div>
-
-    <div class="row mb-2">
-      <div class="field">
-        <dev class="col-auto">
-          <%= f.label "電話番号" %>
-          <%= f.text_field :telephone_number %>
-        </dev>
-      </dev>
-    </div>
-
-    <div class="actions">
-      <%= link_to '編集内容を保存', my_page_path, method: :update, class: "btn btn-success" %>
-     <%= link_to '退会する', '/customers/confirm', method: :update, class: "btn btn-danger" %>
-    </div>
-  <% end %>
- </div>
-
+  <div class="row mt-4">
+    <h3>会員情報編集</h3>
+  </div>
+  <div class="row">
+    <%= form_with model: @customer, url: my_page_update_path do |f| %>
+      <table class="table table-borderless">
+        <tr>
+          <th>氏名</th><td><%= f.text_field :last_name %>　<%= f.text_field :first_name %></td>
+        </tr>
+        <tr>
+          <th>フリガナ</th><td><%= f.text_field :last_name_kana%>　<%= f.text_field :first_name_kana %></td>
+        </tr>
+        <tr>
+          <th>郵便番号</th><td><%= f.text_field :postal_code %></td>
+        </tr>
+        <tr>
+          <th>住所</th><td><%= f.text_field :address %></td>
+        </tr>
+        <tr>
+          <th>電話番号</th><td><%= f.text_field :telephone_number %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th><td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+        </tr>
+      </table>
+      <div class="actions">
+        <%= f.submit '編集内容を保存', method: :update, class: "btn btn-success" %>
+        <%= link_to '退会する', confirm_path, class: "btn btn-danger" %>
+      </div>
+    <% end %>
+  </div>
+</div>
