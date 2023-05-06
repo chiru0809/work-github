@@ -1,2 +1,15 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<main>
+  <div class="container px-5 px-sm-0 justify-content-center">
+    <div class="row mt-4">
+      <%= render 'public/homes/sidebar', genres: @genres %>
+      <div class="col-3 mt-4">
+        <%= image_tag @item.get_item_image(260,250) %>
+      </div>
+      <div class="col-6 mt-4">
+        <h3><%= @item.name %></h3>
+        <p><%= @item.introduction %></p>
+        <p class="my-5">¥<%= @tax_included_price.round %>（税込）</p>
+      </div>
+    </div>
+  </div>
+</main>

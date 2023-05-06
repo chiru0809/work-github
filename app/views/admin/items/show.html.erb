@@ -18,7 +18,7 @@
           <th>ジャンル</th><td><%= @item.genre.name %></td>
         </tr>
         <tr>
-          <th>税込価格<br>(税抜価格)</th><td><%= @item.price * 1.1 %>（<%= @item.price %>）円</td>
+          <th>税込価格<br>(税抜価格)</th><td><%= @tax_included_price.round%>（<%= @item.price %>）円</td>
         </tr>
         <tr>
           <th>販売ステータス</th>
@@ -26,7 +26,7 @@
               <% if @item.is_active == true %>
                 <strong class="text-success">販売中</strong>
               <% else %>
-                <strong class="text-danger">販売停止中</strong>
+                <strong class="text-secondary">販売停止中</strong>
               <% end %>
             </td>
         </tr>

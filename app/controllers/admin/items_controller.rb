@@ -1,6 +1,7 @@
 class Admin::ItemsController < ApplicationController
   def index
-    @items = Item.all
+    @items = Item.all.page(params[:page]).per(10)
+    @genres = Genre.all
   end
   
   def new
@@ -18,7 +19,7 @@ class Admin::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    
+    @tax_included_price = @item.price * 1.1
   end
   
   def edit
