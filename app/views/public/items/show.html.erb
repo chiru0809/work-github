@@ -8,10 +8,11 @@
       <div class="col-6 mt-4">
         <h3><%= @item.name %></h3>
         <p><%= @item.introduction %></p>
-        <p class="my-5">¥<%= @tax_included_price.round %>（税込）</p>
+        <p class="my-5">¥<%= @item.taxin_price.floor %>（税込）</p>
         <p>
           <%= form_with model: @cart_items, url: cart_items_path do |f| %>
-            <%= f.number_field :amount, autocomplete: "off", :placeholder => "個数選択" %>　
+            <%= f.hidden_field :item_id, :value => @item.id %>
+            <%= f.select :amount, *[1..50], :placeholder => "個数選択" %>　
             <%= f.submit "カートに入れる", class: "btn btn-success" %>
           <% end %>
         </p>
