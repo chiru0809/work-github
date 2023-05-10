@@ -6,11 +6,6 @@ Rails.application.routes.draw do
   
 
   scope module: :public do
-    resources :items, only: [:index, :show]
-    resources :orders, only: [:index, :new, :create, :show]
-    resources :cart_items, only: [:index, :create, :update, :destroy]
-    resources :addresses, only: [:index, :create, :edit, :update, :destroy]
-    
     get '/customers', to: 'customers#show', as: 'my_page'
     get '/customers/information/edit', to: 'customers#edit', as: 'my_page_edit'
     patch '/customers', to: 'customers#update', as: 'my_page_update'
@@ -18,6 +13,12 @@ Rails.application.routes.draw do
     patch '/customers/cancel', to: 'customers#cancel', as: 'cancel'
     
     delete '/cart_items/destroy_all', to: 'cart_items#destroy_all', as: 'destroy_all'
+    resources :items, only: [:index, :show]
+    resources :orders, only: [:index, :new, :create, :show]
+    resources :cart_items, only: [:index, :create, :update, :destroy]
+    resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+    
+    
   end
   namespace :admin do
     get '/', to: 'homes#top'

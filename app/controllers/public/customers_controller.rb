@@ -18,10 +18,20 @@ class Public::CustomersController < ApplicationController
   def confirm
   end
   
+  def cancel
+    @customer = Customer.find(current_customer.id)
+    @customer.is_deleted = true
+    @customer.update(customer_cancel_params)
+    redirect_to top_path
+  end
   
   private
   
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :email)
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :email, :is_deleted, :customer)
+  end
+  
+  def customer_cancel_params
+    params.permit(:is_deleted)
   end
 end
