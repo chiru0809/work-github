@@ -11,10 +11,11 @@ Rails.application.routes.draw do
     patch '/customers', to: 'customers#update', as: 'my_page_update'
     get '/customers/confirm', to: 'customers#confirm', as: 'confirm'
     patch '/customers/cancel', to: 'customers#cancel', as: 'cancel'
+    post '/orders/confirm', to: 'orders#confirm', as: 'order_confirm'
     
     delete '/cart_items/destroy_all', to: 'cart_items#destroy_all', as: 'destroy_all'
     resources :items, only: [:index, :show]
-    resources :orders, only: [:index, :new, :create, :show]
+    resources :orders, only: [:index, :new, :create]
     resources :cart_items, only: [:index, :create, :update, :destroy]
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
     
