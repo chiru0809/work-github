@@ -5,7 +5,7 @@
     </div>
   </div>
   <%= form_with model: @order, url: order_confirm_path do |f| %>
-    <div>
+    <div class="rpw">
       <h5 class="mt-4"><strong>支払い方法</strong></h5>
       <p>
         　<%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
@@ -14,19 +14,40 @@
         　<%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
         <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
       </p>
-      
+
       <h5 class="mt-2"><strong>お届け先</strong></h5>
-      <p>
-        　<%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
-        <%= f.label :payment_method_credit_card, "ご自身の住所" %>
-      <br>
-        　<%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
-        <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
+      <p style="margin-bottom: 0px;">
+        　<%= f.radio_button :select_address, 0 %>
+        <%= f.label :select_address, "ご自身の住所" %>
+        <p>　　<%= '〒' + current_customer.postal_code + ' ' +  current_customer.address %><br>
+        　　<%= current_customer.last_name + current_customer.first_name %></p>
+
+        <%= f.radio_button :select_address, 1 %>
+        <%= f.label :select_address, "登録済住所から選択" %><br>
+        　　<%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+        <br>
+        <br>
+        　<%= f.radio_button :select_address, 2 %>
+        <%= f.label :select_address, "新しいお届け先" %>
       </p>
     </div>
-    
+    <div class="row">
+      <div class="col-auto">
+        <table class="table table-borderless" style="margin-top: -55px;">
+          <tr>
+          　<th>　郵便番号(ハイフンなし)</th><td><%= f.text_field :postal_code %></td>
+          </tr>
+          <tr>
+          　<th>　住所</th><td><%= f.text_field :address %></td>
+          </tr>
+          <tr>
+          　<th>　宛名</th><td><%= f.text_field :name %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+    </div>
   <% end %>
-  <div class="row justify-content-center">
-    <%= link_to "情報入力に進む", new_order_path, class: "btn btn-success" %>
-  </div>
 </div>
