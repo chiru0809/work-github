@@ -1,5 +1,7 @@
 class Public::OrdersController < ApplicationController
   def index
+    @orders = current_customer.orders
+    # @order_details = current_customer.order_details
   end
 
   def new
@@ -22,20 +24,29 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    # if @order.payment_method
-    @order.status = 
+    @order.status = 0
     @cart_items = current_customer.cart_items
-    @cart_items.each do |cart_item|
-      @order = OrderDetail.new(order_detail_params)
-    end
     if @order.save
+      @cart_items.each do |cart_item|
+        order_detail = OrderDetail.new
+        order_detail.order_id = @order.id
+        order_detail.item_id = cart_item.item_id
+        order_detail.price = cart_item.item.taxin_price
+        order_detail.amount = cart_item.amount
+        order_detail.making_status = 0
+        order_detail.save
+      end
       redirect_to thanks_path
+      @cart_items.destroy_all
     else
+      @order = Order.new(order_params)
       render :new
     end
   end
 
   def show
+    @order= Order.find(params[:id])
+    @total_price = 0
   end
 
   def thanks
@@ -48,6 +59,6 @@ class Public::OrdersController < ApplicationController
   end
   
   def order_detail_params
-    params.require(:order_detail).permit(:amount)
+    params.require(:order_detail).permit(:item_id, :amount)
   end
 end
