@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+.top_frame {
+  background: url(../images/top_frame.png) no-repeat;
+  height: 1280px;
+  /*background-position: center center;*/
+  /*background-repeat: no-repeat;*/
+  /*background-size: cover;*/
+}

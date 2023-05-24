@@ -23,7 +23,7 @@
           <% @items.each do |item|  %>
             <tr>
               <td><%= item.id %></td>
-              <td><%= link_to item.name, admin_item_path(item.id), class: "text-reset", style: "border-bottom: 1px solid black;" %></td>
+              <td><%= link_to item.name, admin_item_path(item.id), class: "text-reset" %></td>
               <td><%= item.price %></td>
               <td><%= item.genre.name %></td>
               <td>

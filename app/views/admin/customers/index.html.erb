@@ -15,7 +15,7 @@
           <tr>
             <td><%= customer.id %></td>
             <td>
-              <%= link_to admin_customer_path(customer.id), class: "text-reset", style: "border-bottom: 1px solid black;" do %>
+              <%= link_to admin_customer_path(customer.id), class: "text-reset" do %>
                 <%= customer.last_name %><%= customer.first_name %>
               <% end %>
             </td>

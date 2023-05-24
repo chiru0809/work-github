@@ -1,11 +1,13 @@
-<main>
-    <div class="container px-5 px-sm-0">
-        <div class="row">
-            <%= render 'sidebar', genres: @genres %>
-            <div class="col-md-8">
-                <%= image_tag('top_frame.png', class: "img-fluid") %>
-                <p>ようこそ、ながのCAKEへ！</p>
-            </div>
-        </div>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <%= render 'sidebar', genres: @genres %>
+    <div class="col-sm-8 top_frame">
+      <%= image_tag('top_frame.png', class: "img-fluid") %>
+      <p>ようこそ、ながのCAKEへ！<br>
+      このサイトは、ケーキ販売のECサイトです。<br>
+      会員でない方も商品の閲覧はできますが、<br>
+      購入には会員登録が必要です。</p>
+      <h5><strong>新着商品</strong></h5>
     </div>
-</main>
+  </div>
+</div>
