@@ -14,7 +14,7 @@
           <% @orders.each do |order| %>
           <tr>
             <td>
-              <%= link_to admin_order_path(order.id), class: "text-reset", style: "border-bottom: 1px solid black;" do %>
+              <%= link_to admin_order_path(order.id), class: "text-reset" do %>
                 <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
               <% end %>
             </td>
