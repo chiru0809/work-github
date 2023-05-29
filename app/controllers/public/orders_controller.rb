@@ -10,19 +10,19 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-    @order = Order.new(order_params)
-    if params[:order][:address_id] == 0
+    if params[:order][:address_id] == "0"
+      @order = Order.new(order_params)
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
       @cart_items = current_customer.cart_items
-    elsif params[:order][:address_id] == 1
+    elsif params[:order][:address_id] == "1"
       @order = Order.new(order_params)
       @address = Address.find(params[:order][:address_id])
       @order.postal_code = @address.postal_code
       @order.address = @address.address
       @order.name = @address.name
-    elsif params[:order][:address_id] == 2
+    elsif params[:order][:address_id] == "2"
       @order = Order.new(order_params)
     end
     @cart_items = current_customer.cart_items
@@ -55,7 +55,10 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @order= Order.find(params[:id])
+    order = Order.find(params[:id])
+  unless order.customer_id == current_customer.id
+    redirect_to orders_path
+  end
     @total_price = 0
   end
 
@@ -67,7 +70,7 @@ class Public::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:payment_method, :postal_code, :address, :name, :shipping_cost, :total_amount )
   end
-  
+
   def order_detail_params
     params.require(:order_detail).permit(:item_id, :amount)
   end
