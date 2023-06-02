@@ -8,7 +8,9 @@
         <th>会員ID</th><td><%= @customer.id %></td>
       </tr>
       <tr>
-        <th>氏名</th><td><%= @customer.last_name %>　<%= @customer.first_name %></td>
+        <th>氏名</th>
+        <td>
+          <%= @customer.last_name %>　<%= @customer.first_name %></td>
       </tr>
       <tr>
         <th>郵便番号</th><td><%= @customer.postal_code %></td>
@@ -35,8 +37,10 @@
       <tr>
         <th></th>
         <td>
-          <%= link_to '編集する', edit_admin_customer_path(@customer.id), class: "btn btn-success" %>　　
-          <%= link_to '注文履歴一覧を見る', edit_admin_customer_path(@customer.id), class: "btn btn-primary" %>
+          <%= form_tag admin_path, method: :get, class: 'boards__searchForm' do %>
+            <%= link_to '編集する', edit_admin_customer_path(@customer.id), class: "btn btn-success" %>　　
+            <%= link_to '注文履歴一覧を見る', admin_path(customer_id: @customer.id), class: "btn btn-primary" %>
+          <% end %>
         </td>
       </tr>
     </table>

@@ -22,6 +22,7 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(current_customer.id)
     @customer.is_deleted = true
     @customer.update(customer_cancel_params)
+    reset_session
     redirect_to top_path
   end
   

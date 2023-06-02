@@ -1,9 +1,9 @@
 <div class="container px-5 px-sm-0">
-  <div class="row">
+  <div class="row top-row">
     <%= render 'sidebar', genres: @genres %>
     <div class="col-sm-8 top_frame">
       <%= image_tag('top_frame.png', class: "img-fluid") %>
-      <p>ようこそ、ながのCAKEへ！<br>
+      <p class="top-text">ようこそ、ながのCAKEへ！<br>
       このサイトは、ケーキ販売のECサイトです。<br>
       会員でない方も商品の閲覧はできますが、<br>
       購入には会員登録が必要です。</p>
@@ -12,7 +12,7 @@
         <% @items.each do |item| %>
         <div class="p-2 card w-25">
           <%= link_to item_path(item.id) do %>
-            <%= image_tag item.get_item_image(200,150) %><br>
+            <%= image_tag item.get_item_image(160,150) %><br>
             <p><%= item.name %></p>
             <p>¥<%= item.price %></p>
           <% end %>

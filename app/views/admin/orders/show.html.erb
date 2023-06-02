@@ -4,7 +4,11 @@
   </div>
   <div class="row">
     <p class="col-2"><strong>購入者</strong></p>
-    <p class="col-10"><%= @order.customer.last_name + @order.customer.first_name %></p>
+    <%= form_tag admin_path, method: :get, class: 'boards__searchForm' do %>
+      <p class="col-auto">
+        <%= link_to @order.customer.last_name + @order.customer.first_name, admin_path(customer_id: @customer.id) %>
+      </p>
+    <% end %>
   </div>
   <div class="row">
     <p class="col-2"><strong>注文日</strong></p>

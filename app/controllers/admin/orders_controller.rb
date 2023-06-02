@@ -1,6 +1,7 @@
 class Admin::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
+    @customer = Customer.find(@order.customer_id)
     @order_details = OrderDetail.where(order_id: @order.id)
     @total_price = 0
   end
